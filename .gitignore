@@ -3,4 +3,6 @@ __pycache__
 venv
 *.swp
 .DS_Store
+db.sqlite3
+
 
