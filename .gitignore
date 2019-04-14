@@ -1,4 +1,6 @@
 __pycache__
 .venv*
 venv
+*.swp
+.DS_Store
 
