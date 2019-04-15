@@ -6,6 +6,7 @@ import requests
 
 from django.views import View
 
+from launch.LTIX_classes import *
 
 from . import tsugi_keys
 
@@ -18,45 +19,34 @@ import jwt, json
 
 def launch(request) :
     encoded = request.POST.get('JWT')
-    print(encoded)
-
+    # print(encoded)
     public_key = tsugi_keys.public_key
-    decoded = jwt.decode(encoded, public_key, algorithms=['RS256'])
-    print(decoded)
-    request.session['decoded'] = decoded
+    lti_launch = jwt.decode(encoded, public_key, algorithms=['RS256'])
+    # print(lti_launch)
+    request.session['lti_launch'] = lti_launch
     return redirect(reverse_lazy('grade'))
-
 
 class GradeView(View):  # Reusable bit...
 
     def get(self, request) :
-        decoded = request.session.get('decoded') 
-        js = json.dumps(decoded, indent=4)
+        launch = TsugiLaunch(tsugi_keys, request)
+        print(launch.user.displayname)
+
+        js = json.dumps(launch.lti_launch, indent=4)
 
         retval = "<pre>\n"+js+"\n</pre>\n"
-        context = {'debug_decoded' : js}
+        context = {'lti_launch' : js, 'launch': launch}
         return render(request, 'launch/main.html', context)
 
     def post(self, request) :
-        decoded = request.session.get('decoded') 
+        launch = TsugiLaunch(tsugi_keys, request)
         grade = float(request.POST.get('grade'))
-        print(grade)
-        callback = decoded.get('callback')
-        endpoint = callback.get('endpoint')
-        token = callback.get('token')
+        comment = request.POST.get('comment')
+        # print(grade, comment)
+        retval = launch.result.setGrade(grade, comment)
+        print('setGrade returns',retval)
 
-        rpc = { 'token' : token,
-                'object' : 'result',
-                'method' : 'gradeSend',
-                'p1' : grade
-        }
-        print(endpoint, rpc)
-
-        r = requests.post(endpoint, data = rpc)
-        print(r.status_code)
-        print(r.headers)
-        print(r.text)
-
-        return HttpResponse('Yada')
+        context = {'retval' : retval}
+        return render(request, 'launch/graderesult.html', context)
 
 
