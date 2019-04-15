@@ -1,0 +1,19 @@
+<h1>Grade Result</h1>
+<p>
+{% if retval == '1' %}
+Grade sent successfully
+{% else %}
+<p>
+Grade send failure, detail:
+<pre>
+{{ retval }}
+</pre>
+{% endif %}
+</p>
+<p>
+Launch Debug:
+<pre>
+{{ tsugi.lti_launch_debug }}
+</pre>
+</p>
+

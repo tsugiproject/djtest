@@ -1,7 +1,7 @@
 <h1>Launch</h1>
 <p>
-Welcome {{ launch.user.displayname }} from {{ launch.context.title }}
-{% if launch.user.instructor %}
+Welcome {{ tsugi.user.displayname }} from {{ tsugi.context.title }}
+{% if tsugi.user.instructor %}
 (Instructor)
 {% endif %}
 <form method="post">
@@ -13,8 +13,8 @@ Welcome {{ launch.user.displayname }} from {{ launch.context.title }}
 </form>
 </p>
 <p>
-Launch:
+Launch Debug:
 <pre>
-{{ lti_launch }}
+{{ tsugi.lti_launch_debug }}
 </pre>
 </p>

@@ -1,4 +1,5 @@
 import requests
+import json
 
 class TsugiLaunch():
     """Holds the launch data for a Tsugi Launch
@@ -15,6 +16,7 @@ class TsugiLaunch():
     redirecturl = None
     ltirow = None
     lti_launch = None
+    lti_launch_debug = None
 
     def __init__(self, request=None) :
         if request is not None :
@@ -25,6 +27,7 @@ class TsugiLaunch():
 
     def from_request(self, request) :
         self.lti_launch = request.session.get('lti_launch')
+        self.lti_launch_debug = json.dumps(self.lti_launch, indent=4)
         self.load(self.lti_launch.get('lti'))
 
     def load(self, ltirow) : 
@@ -90,8 +93,8 @@ class TsugiResult() :
         self.sourcedid = launch.ltirow.get('sourcedid')
         self.url = launch.ltirow.get('result_url')
 
-    def setGrade(self,grade,comment) :
-        print('setGrade', grade, comment)
+    def gradeSend(self,grade,comment) :
+        print('gradeSend', grade, comment)
         callback = self.launch.lti_launch.get('callback')
         endpoint = callback.get('endpoint')
         token = callback.get('token')

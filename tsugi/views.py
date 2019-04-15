@@ -6,7 +6,7 @@ from django.conf import settings
 from django.views import View
 
 import requests
-from tsugi.LTIX_classes import *
+from tsugi.LTIX import *
 
 import jwt
 
