@@ -6,7 +6,7 @@ import requests
 
 from django.views import View
 
-from launch.LTIX_classes import *
+from tsugi.LTIX_classes import *
 
 from . import tsugi_keys
 
