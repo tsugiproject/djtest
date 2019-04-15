@@ -119,3 +119,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Configure the social login
+try:
+    from . import tsugi_settings
+    TSUGI_PUBLIC_KEY = tsugi_settings.TSUGI_PUBLIC_KEY
+    TSUGI_PRIVATE_KEY = tsugi_settings.TSUGI_PRIVATE_KEY
+except:
+    print('Could not import tsugi_settings.py for tsugi, please see samples/tsugi_settings-dist.py')
+

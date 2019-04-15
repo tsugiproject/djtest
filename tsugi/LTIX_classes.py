@@ -16,8 +16,7 @@ class TsugiLaunch():
     ltirow = None
     lti_launch = None
 
-    def __init__(self, CFG, request=None) :
-        self.CFG = CFG
+    def __init__(self, request=None) :
         if request is not None :
             self.from_request(request)
         else : 
