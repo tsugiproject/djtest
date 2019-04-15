@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 
-from tsugi.mixins import TsugiMixin
+from django_tsugi.mixins import TsugiMixin
 
 class GradeView(TsugiMixin, View):
 
