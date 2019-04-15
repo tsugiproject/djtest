@@ -6,25 +6,16 @@ import requests
 
 from django.views import View
 
-from tsugi.LTIX_classes import *
-
 from . import tsugi_keys
 
-import jwt, json
+from tsugi.LTIX_classes import *
+
+import json
 
 # Create your views here.
 
 # pip install PyJWT
 # pip install cryptography
-
-def launch(request) :
-    encoded = request.POST.get('JWT')
-    # print(encoded)
-    public_key = tsugi_keys.public_key
-    lti_launch = jwt.decode(encoded, public_key, algorithms=['RS256'])
-    # print(lti_launch)
-    request.session['lti_launch'] = lti_launch
-    return redirect(reverse_lazy('grade'))
 
 class GradeView(View):  # Reusable bit...
 
