@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'grade.apps.GradeConfig',
 ]
 
+# To set up Tsugi
+TSUGI_KEYSET = "http://localhost:8888/tsugi/lti/keyset-ext";
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -121,10 +124,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Configure the social login
-try:
-    from . import tsugi_settings
-    TSUGI_KEYSET = tsugi_settings.TSUGI_KEYSET
-except:
-    print('Could not import tsugi_settings.py for tsugi')
 
