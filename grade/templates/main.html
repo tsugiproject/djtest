@@ -1,0 +1,32 @@
+<h1>Django Tsugi Sample Application</h1>
+<p>
+This is a sample application written using 
+<a href="https://pypi.org/project/django-tsugi/" target="_blank">django-tsugi</a>.
+</p>
+<p>
+This application is designed to be connected into a running Tsugi server, using the
+<b>Admin -> External tools</b> feature.  It receives a special Tsugi-style signed
+JWT launch at <b>/grade/launch</b> to provision a session on this application.
+The application can send a grade back to the LMS <i>through Tsugi</i> using
+an API callback.
+</p>
+<p>
+Tsugi handles all of the LTI 1.1, LTI Advantage, or even Google Classroom mechanics
+and allows this tool to be very simple.
+</p>
+<p>
+The source code for this application is at
+<a href="https://github.com/tsugiproject/djtest" target="_blank">
+    https://github.com/tsugiproject/djtest
+</a>
+and you can find a tutorial / walkthrough on how to install your own
+copy of this tool at
+<a href="https://www.tsugi.org/django.txt" target="_blank">
+    https://www.tsugi.org/django.txt
+</a>.
+</p>
+<p>
+Note that navigating directly to 
+<a href="grade/launch" target="_blank">/grade/launch</a> will 
+result in an error because this is a launch endpoint.
+</p>
