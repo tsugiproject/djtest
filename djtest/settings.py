@@ -42,7 +42,8 @@ INSTALLED_APPS = [
 ]
 
 # To set up Tsugi
-TSUGI_KEYSET = "http://localhost:8888/tsugi/lti/keyset-ext";
+# TSUGI_KEYSET = "http://localhost:8888/tsugi/lti/keyset-ext";
+TSUGI_KEYSET = "https://dev1.tsugicloud.org/tsugi/lti/keyset-ext";
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
