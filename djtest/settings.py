@@ -47,9 +47,15 @@ INSTALLED_APPS = [
 TSUGI_PROXY = False
 TSUGI_KEYSET = "http://localhost:8888/tsugi/lti/keyset-ext"
 
+COOKIELESS = {}
+COOKIELESS['REWRITE'] = True
+COOKIELESS['USE_GET'] = True
+COOKIELESS['CLIENT_ID'] = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_tsugi.middleware.CookielessSessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

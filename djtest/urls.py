@@ -18,6 +18,9 @@ from django.urls import path
 from django.urls import include
 from django.views.generic import TemplateView
 
+from django_tsugi.decorators import no_cookies
+
+
 urlpatterns = [
     path('', TemplateView.as_view(template_name='main.html')),
     path('admin/', admin.site.urls),
