@@ -1,15 +1,9 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
-
-from django.conf import settings
-
+from django.http import HttpResponseRedirect
 
 from django_tsugi.mixins import TsugiMixin
-
-from jwcrypto import jwk
-import urllib.request, urllib.parse, urllib.error
-
 
 class GradeView(TsugiMixin, View):
 
@@ -31,19 +25,18 @@ class TestView(View) :
         response = """<html><body><p>Bob="""+str(request.session['bob'])+"""</p>
         <p>
         <form method="post">
-        <input type="submit" value="Click">
+        <input type="submit" value="Form 1">
         </form>
         <form method="post">
-        <input type="submit" value="Click 2">
+        <input type="submit" value="Form 2">
         </form>
         </p>
-        <p>This sample code is available at
-        <a href="""+'"'+request.path+'"'+""">click</a></p>
-        <a href="https://www.dr-chuck.com/">Chuck</a></p>
-        <a href="test">click 2</a></p>
+        <a href="test">test</a></p>
+        <p><a href="""+'"'+request.path+'"'+""">"""+request.path+"""</a></p>
+        <a href="https://www.dr-chuck.com/">External site</a></p>
         </body></html>"""
         return HttpResponse(response)
 
     def post(self, request) :
         print('I am post')
-        return self.get(request)
+        return HttpResponseRedirect(request.path)
